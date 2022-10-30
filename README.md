@@ -1,3 +1,43 @@
+# Tinycore extension of Omniedge Cli
+
+OmniEdge is an Open source p2p layer 2 VPN infrastructure, a traditional VPN alternative. No central server, easy to scale with less maintenance. What happens in intranet, stays in in intranet.
+
+This repo make omniedge extension for tinycore.
+
+# Extension
+
+Download omniedge.tcz
+
+# Build the extension
+
+Tool chain on Tinycore. (Must on Tinycore pure64, because Tinycore x86 and Tinycore x64's go extension stay v1.4)
+```shell
+tce-load -wi curl make git go bash autoconf automake squashfs-tool
+```
+
+Before compile
+```shell
+export SSL_CERT_FILE=/usr/local/etc/ssl/certs/ca-certificates.crt
+```
+
+Then follow Official Doc [Build OmniEdge for Linux](https://omniedge.io/docs/article/development/linux)
+```shell
+git clone https://github.com/omniedgeio/omniedge-cli
+cd omniedge-cli
+go mod download
+go generate
+BUILD_ENV=prod make build
+```
+
+Make tcz
+```shell
+cp out/omniedge tcz/omniedge/usr/local/bin
+cd tcz
+mksquashfs omniedge omniedge.tcz
+```
+
+Then copy omniedge.tcz and omniedge.tcz.dep to tce/optional forld and load it
+
 # Omniedge Cli
 
 OmniEdge CLi for macOS (Intel, M1/M2 MacBook), Linux Distributions, and ARM, Raspberry PI, Nvidia Jetson Embedded System. 
