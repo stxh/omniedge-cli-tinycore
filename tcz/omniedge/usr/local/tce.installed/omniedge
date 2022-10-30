@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# run Omniedge-cli on Tinycore
+
+# Omniedge need /etc/machine-id file
+[ -f "/etc/machine-id" ] || echo de7fa5c1e010425abd9821c83c108964 > /etc/machine-id
+
+# Set environment variable
+echo "export SSL_CERT_FILE=/usr/local/etc/ssl/certs/ca-certificates.crt" > /etc/profile.d/omniedge.sh
+export SSL_CERT_FILE=/usr/local/etc/ssl/certs/ca-certificates.crt
+
+#sudo -E omniedge join -n vnw_Your_network_id >/dev/null 2>&1 &
